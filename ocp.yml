@@ -1,0 +1,28 @@
+name: toolkit_name
+id: toolkit_id
+type: toolkit
+default:
+  version: 2023.0610.aaaaaa
+  config: "gnu-Release"
+versions:
+  - id: 2023.0610.aaaaaa
+    config: [gnu-Debug, gnu-Release, gnu-Release-superlu]
+    dependency: []
+  - id: 2022.0606.bbbbbb
+    config: [gnu-Debug, gnu-Release,]
+    dependency: []
+configs: #
+  - id: gnu-Debug
+    run: source config/install.sh linux-gnu-Debug
+  - id: gnu-Release
+    run: source config/install.sh linux-gnu-Release
+  - id: gnu-Release-superlu
+    dependencies: ["superlu"]
+    run: source config/install.sh linux-gnu-Debug
+dependencies:
+  - id: dep1
+    type: toolkit
+    version: ["2023.0610.aaaaaa", "2022.0606.bbbbbb"]
+  - id: superlu
+    type: external
+    version: ["1.0.0", "2.0.0", "3.0.0"]

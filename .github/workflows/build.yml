@@ -1,0 +1,27 @@
+name: Toolkit Build
+defaults:
+  run:
+    shell: bash -ileo pipefail {0}
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ["self-hosted","cloud"]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."
+      - name: Check out repository
+        uses: actions/checkout@v3
+          # Option 2: specify 'latest' or 'latestrc' in the input version arguments:
+      - name: Prepare and Install
+        run: |
+          tkname="ocptk"
+          current_date=$(date +"%Y.%m%d")
+          short_hash=$(git rev-parse --short HEAD)
+          source scripts/prepare.sh $tkname
+          source ocp/toolkit/$tkname/$current_date.$short_hash/config/install.sh linux-gnu-Debug

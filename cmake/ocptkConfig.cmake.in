@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(spdlog)
+
+include("${CMAKE_CURRENT_LIST_DIR}/ocptkTargets.cmake")
+
+check_required_components(ocptk)

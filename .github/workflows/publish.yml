@@ -1,0 +1,25 @@
+name: Toolkit Publish
+defaults:
+  run:
+    shell: bash -ileo pipefail {0}
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ["self-hosted","cloud"]
+    steps:
+      - name: Basic info
+        run: |
+          echo "Build for ${{ github.ref }} branch in ${{ github.repository }} repository."
+          echo "Job triggered by ${{ github.event_name }}, on self-hosted ${{ runner.os }}."
+      - name: Check out repository
+        uses: actions/checkout@v3
+      # - name: Setup Rclone
+      #   uses: AnimMouse/setup-rclone@v1
+      #   with:
+      #     rclone_config: ${{ secrets.RCLONE_CONFIG }}
+      - name: Publish
+        run: |
+          tkname="ocptk"
+          source scripts/prepare.sh $tkname
+          source scripts/publish_src.sh $tkname
