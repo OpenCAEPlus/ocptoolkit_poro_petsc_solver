@@ -2,11 +2,11 @@ name: poro_petsc_solver
 id: poro_petsc_solver
 type: toolkit
 default:
-  version: 2023.1202.c76cee1
+  version: 0.1.0
   configuration: "intel-Release"
   scripts: ["prepare","publish_bin","publish_src"]
 versions:
-  - id: 2023.1202.c76cee1
+  - id: 0.1.0
     default: "intel-Release"
     configurations: ["intel-Debug", "intel-Release"]
 configurations: #

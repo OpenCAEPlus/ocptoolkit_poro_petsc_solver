@@ -23,9 +23,9 @@ message(STATUS "Set build type to ${CMAKE_BUILD_TYPE} configuration")
 set(PETSC_DIR "/sh3/home/sh3sce0588/lsz/petsc/" CACHE PATH "Path to PETSC")
 set(PETSC_ARCH "int64_hypre_release" CACHE STRING "The PETSC architecture") #lsz
 
-project(poro_petsc_solver)
+project(poro_petsc_solver VERSION 0.1.0)
 # include(CTest) # add ctest support
-include(Version) # set the versioning convention is YYYY.mmdd.commit_short_hash
+# include(Version) # set the versioning convention is YYYY.mmdd.commit_short_hash
 include(CPackConfig) # add cpack configuration from cmake folder
 
 include_directories(${PROJECT_SOURCE_DIR}/src/)

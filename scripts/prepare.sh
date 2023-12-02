@@ -1,11 +1,16 @@
 #!/bin/bash
 
-toolkit_id=${1:-"poro_petsc_solver"}
+version=${1:-"0.1.0"}
+toolkit_id=${2:-"poro_petsc_solver"}
 
-current_date=$(date +"%Y.%m%d")
-short_hash=$(git rev-parse --short HEAD)
-dir="ocp/toolkit/$toolkit_id/$current_date.$short_hash/source"
-xzfile="${toolkit_id}-$current_date.$short_hash.tar.xz"
+# current_date=$(date +"%Y.%m%d")
+# short_hash=$(git rev-parse --short HEAD)
+# dir="ocp/toolkit/$toolkit_id/$current_date.$short_hash/source"
+# xzfile="${toolkit_id}-$current_date.$short_hash.tar.xz"
+
+dir="ocp/toolkit/$toolkit_id/$version/source"
+xzfile="${toolkit_id}-$version.tar.xz"
+
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 cd $script_dir/..

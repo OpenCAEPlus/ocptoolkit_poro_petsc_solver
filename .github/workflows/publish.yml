@@ -4,6 +4,15 @@ defaults:
     shell: bash -ileo pipefail {0}
 on:
   workflow_dispatch:
+    inputs:
+      id:
+        description: "Software id"
+        required: true
+        default: "poro_petsc_solver"
+      version:
+        description: "Software version"
+        required: true
+        default: "0.1.0"
 jobs:
   build:
     runs-on: ["self-hosted","cloud"]
@@ -20,6 +29,5 @@ jobs:
       #     rclone_config: ${{ secrets.RCLONE_CONFIG }}
       - name: Publish
         run: |
-          tkname="ocptk"
-          source scripts/prepare.sh $tkname
-          source scripts/publish_src.sh $tkname
+          source scripts/prepare.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.id }}
+          source scripts/publish_src.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.id }}
