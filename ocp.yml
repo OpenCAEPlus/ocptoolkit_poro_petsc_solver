@@ -11,7 +11,7 @@ versions:
     configurations: ["default"]
 configurations: #
   - id: default
-    run: configuration/default
+    run: configurations/default
 dependencies:
   - id: petsc
     uid: petsc
