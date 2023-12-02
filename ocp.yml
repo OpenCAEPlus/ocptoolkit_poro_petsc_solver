@@ -3,19 +3,15 @@ id: poro_petsc_solver
 type: toolkit
 default:
   version: 0.1.0
-  configuration: "intel-Release"
+  configuration: "default"
   scripts: ["prepare","publish_bin","publish_src"]
 versions:
   - id: 0.1.0
-    default: "intel-Release"
-    configurations: ["intel-Debug", "intel-Release"]
+    default: "default"
+    configurations: ["default"]
 configurations: #
-  - id: intel-Debug
-    run: configuration/install.sh
-    arguments: ["linux-intel-Debug"]
-  - id: intel-Release
-    run: configuration/install.sh
-    arguments: ["linux-intel-Release"]
+  - id: default
+    run: configuration/default.sh
 dependencies:
   - id: petsc
     uid: petsc
