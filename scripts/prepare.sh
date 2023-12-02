@@ -1,6 +1,6 @@
 #!/bin/bash
 
-toolkit_id=${1:-"ocptk"}
+toolkit_id=${1:-"poro_petsc_solver"}
 
 current_date=$(date +"%Y.%m%d")
 short_hash=$(git rev-parse --short HEAD)
@@ -25,7 +25,7 @@ cmake --preset="linux-gnu-Release" -S "."
 cmake --build --preset="linux-gnu-Release" --target package_source
 tar -xJf build/linux-gnu-Release/$xzfile -C $dir --strip-components=1
 mv $dir/ocp.yml $dir/..
-mv $dir/config $dir/..
+mv $dir/configurations $dir/..
 
 # tar -cJf $xzfile ocp/
 

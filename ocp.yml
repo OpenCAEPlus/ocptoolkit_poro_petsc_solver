@@ -1,28 +1,29 @@
-name: toolkit_name
-id: toolkit_id
+name: poro_petsc_solver
+id: poro_petsc_solver
 type: toolkit
 default:
-  version: 2023.0610.aaaaaa
-  config: "gnu-Release"
+  version: 1.0
+  configuration: "gnu-Release"
+  scripts: ["prepare","publish_bin","publish_src"]
 versions:
-  - id: 2023.0610.aaaaaa
-    config: [gnu-Debug, gnu-Release, gnu-Release-superlu]
-    dependency: []
-  - id: 2022.0606.bbbbbb
-    config: [gnu-Debug, gnu-Release,]
-    dependency: []
-configs: #
+  - id: 1.0
+    default: "gnu-Release"
+    configurations: ["gnu-Debug", "gnu-Release"]
+configurations: #
   - id: gnu-Debug
-    run: source config/install.sh linux-gnu-Debug
+    run: configuration/install.sh
+    arguments: ["linux-gnu-Debug"]
   - id: gnu-Release
-    run: source config/install.sh linux-gnu-Release
-  - id: gnu-Release-superlu
-    dependencies: ["superlu"]
-    run: source config/install.sh linux-gnu-Debug
+    run: configuration/install.sh
+    arguments: ["linux-gnu-Release"]
 dependencies:
-  - id: dep1
-    type: toolkit
-    version: ["2023.0610.aaaaaa", "2022.0606.bbbbbb"]
-  - id: superlu
+  - id: petsc
+    uid: petsc
     type: external
-    version: ["1.0.0", "2.0.0", "3.0.0"]
+    default:
+      version: "3.20.1"
+      configuration: "int64"
+    versions: 
+      - id: "3.20.1"
+        default: "int64"
+        configurations: ["int64"]

@@ -4,7 +4,7 @@
 # to the folder for actual installation.
 
 # config=$(basename "${BASH_SOURCE[0]}" .sh)
-preset=${1:-"linux-gnu-Release"}
+preset=${1:-"linux-intel-Release"}
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 root="$script_dir/.."
 source_dir="$script_dir/../source"
@@ -14,5 +14,5 @@ install_dir="$script_dir/../install/$OCP_COMPILER/$config"
 # cmake -S $source_dir -B $build_dir -DCMAKE_INSTALL_PREFIX=$install_dir
 # cmake --build $build_dir --target install
 
-cmake --preset=$preset -S $source_dir -B $build_dir -DCMAKE_INSTALL_PREFIX=$install_dir
+cmake --preset=$preset -S $source_dir -B $build_dir -DCMAKE_INSTALL_PREFIX=$install_dir -DPETSC_DIR=$OCP_PETSC_DIR -DPETSC_ARCH="" -DPSINT64
 cmake --build $build_dir --target install

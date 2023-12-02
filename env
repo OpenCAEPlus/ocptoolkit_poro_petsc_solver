@@ -1,0 +1,5 @@
+export OCP_PETSC_DIR=/home/xcheng/code/OpenCAXPlus/ocpexternal_petsc/ocp/external/petsc/3.20.1/install/intel/int64
+export OCP_LAPACK64_DIR=/home/xcheng/code/OpenCAXPlus/ocpexternal_lapack/ocp/external/lapack/3.11.0/install/intel/int64
+export OCP_LAPACK_DIR=/home/xcheng/code/OpenCAXPlus/ocpexternal_lapack/ocp/external/lapack/3.11.0/install/intel/default
+export OCP_COMPILER=intel
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$OCP_PETSC_DIR/lib/pkgconfig:$OCP_LAPACK64_DIR/lib/pkgconfig:$OCP_LAPACK_DIR/lib/pkgconfig
