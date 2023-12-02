@@ -2,20 +2,20 @@ name: poro_petsc_solver
 id: poro_petsc_solver
 type: toolkit
 default:
-  version: 1.0
-  configuration: "gnu-Release"
+  version: 2023.1202.c76cee1
+  configuration: "intel-Release"
   scripts: ["prepare","publish_bin","publish_src"]
 versions:
-  - id: 1.0
-    default: "gnu-Release"
-    configurations: ["gnu-Debug", "gnu-Release"]
+  - id: 2023.1202.c76cee1
+    default: "intel-Release"
+    configurations: ["intel-Debug", "intel-Release"]
 configurations: #
-  - id: gnu-Debug
+  - id: intel-Debug
     run: configuration/install.sh
-    arguments: ["linux-gnu-Debug"]
-  - id: gnu-Release
+    arguments: ["linux-intel-Debug"]
+  - id: intel-Release
     run: configuration/install.sh
-    arguments: ["linux-gnu-Release"]
+    arguments: ["linux-intel-Release"]
 dependencies:
   - id: petsc
     uid: petsc

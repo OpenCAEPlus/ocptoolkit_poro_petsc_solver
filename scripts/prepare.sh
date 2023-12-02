@@ -21,9 +21,9 @@ mkdir -p "$dir"
 # cp CMakeLists.txt $dir
 # cp CMakePresets.json $dir
 
-cmake --preset="linux-gnu-Release" -S "."
-cmake --build --preset="linux-gnu-Release" --target package_source
-tar -xJf build/linux-gnu-Release/$xzfile -C $dir --strip-components=1
+cmake --preset="linux-intel-Release" -S "."
+cmake --build --preset="linux-intel-Release" --target package_source
+tar -xJf build/linux-intel-Release/$xzfile -C $dir --strip-components=1
 mv $dir/ocp.yml $dir/..
 mv $dir/configurations $dir/..
 

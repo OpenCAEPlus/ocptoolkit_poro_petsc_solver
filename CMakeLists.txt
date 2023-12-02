@@ -23,7 +23,7 @@ message(STATUS "Set build type to ${CMAKE_BUILD_TYPE} configuration")
 set(PETSC_DIR "/sh3/home/sh3sce0588/lsz/petsc/" CACHE PATH "Path to PETSC")
 set(PETSC_ARCH "int64_hypre_release" CACHE STRING "The PETSC architecture") #lsz
 
-project(petsc_solver)
+project(poro_petsc_solver)
 # include(CTest) # add ctest support
 include(Version) # set the versioning convention is YYYY.mmdd.commit_short_hash
 include(CPackConfig) # add cpack configuration from cmake folder
@@ -38,10 +38,9 @@ include_directories(${PROJECT_SOURCE_DIR}/include/)
 # include_directories(/public1/home/sch10084/ParPennSim-4-14-16/Utility/src/)
 # include_directories(/home/xcheng/code/OpenCAXPlus/ocpexternal_lapack/ocp/external/lapack/3.11.0/install/intel/int64/include)
 file(GLOB_RECURSE SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+set(tkname poro_petsc_solver)
 
-add_library(petsc_solver STATIC ${SRC_FILES})
-
-
+add_library(${tkname} STATIC ${SRC_FILES})
 
 
 find_package(PkgConfig)
@@ -77,9 +76,9 @@ message(STATUS ${PETSC_INCLUDE_DIRS})
 message(STATUS ${PETSC_LINK_LIBRARIES})
 message(STATUS ${PETSC_DIR})
 
-target_link_libraries(petsc_solver PUBLIC PkgConfig::PETSC PkgConfig::CBLAS)
+target_link_libraries(${tkname} PUBLIC PkgConfig::PETSC PkgConfig::CBLAS)
 # target_include_directories(petsc_solver PUBLIC ${PETSC_INCLUDE_DIRS})
-target_compile_definitions(petsc_solver PUBLIC PSINT64)
+target_compile_definitions(${tkname} PUBLIC PSINT64)
 include(GNUInstallDirs)
 
 # Standard package handling
@@ -99,7 +98,6 @@ include(FindPackageHandleStandardArgs)
 #         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 #         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
-set(tkname petsc_solver)
  
 install(
   TARGETS ${tkname}
@@ -115,7 +113,7 @@ install(
   EXPORT ${tkname}Targets
   FILE ${tkname}Targets.cmake
   NAMESPACE ocp::
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/petsc_solver)
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${tkname})
 
 export(
   EXPORT ${tkname}Targets
@@ -128,8 +126,8 @@ write_basic_package_version_file(
   VERSION ${PACKAGE_VERSION}
   COMPATIBILITY AnyNewerVersion)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in
-               ${PROJECT_NAME}Config.cmake @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
-              "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/${tkname}Config.cmake.in
+               ${tkname}Config.cmake @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${tkname}Config.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/${tkname}ConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
