@@ -29,6 +29,6 @@ jobs:
       #     rclone_config: ${{ secrets.RCLONE_CONFIG }}
       - name: Publish
         run: |
-          source /opt/intel/oneapi/setvars.sh
+          source /opt/intel/oneapi/setvars.sh --force
           source scripts/prepare.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.id }}
           source scripts/publish_src.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.id }}

@@ -26,5 +26,6 @@ jobs:
           # Option 2: specify 'latest' or 'latestrc' in the input version arguments:
       - name: Prepare and Install
         run: |
+          source /opt/intel/oneapi/setvars.sh --force
           source scripts/prepare.sh ${{ github.event.inputs.version }} ${{ github.event.inputs.id }}
           source ocp/toolkit/${{ github.event.inputs.id }}/${{ github.event.inputs.version }}/configurations/default.sh linux-intel-Debug
