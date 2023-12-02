@@ -76,9 +76,9 @@ message(STATUS ${PETSC_INCLUDE_DIRS})
 message(STATUS ${PETSC_LINK_LIBRARIES})
 message(STATUS ${PETSC_DIR})
 
-target_link_libraries(${tkname} PUBLIC PkgConfig::PETSC PkgConfig::CBLAS)
+target_link_libraries(${tkname} PRIVATE PkgConfig::PETSC PkgConfig::CBLAS)
 # target_include_directories(petsc_solver PUBLIC ${PETSC_INCLUDE_DIRS})
-target_compile_definitions(${tkname} PUBLIC PSINT64)
+target_compile_definitions(${tkname} PRIVATE PSINT64)
 include(GNUInstallDirs)
 
 # Standard package handling
